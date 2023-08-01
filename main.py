@@ -1,9 +1,10 @@
+# 1 Task
 def imt_count():
     try:
         weight = int(input("Enter your weight in kilos: "))
         height = int(input("Enter your height in centimetres: "))
         if weight and height < 1:
-            raise TypeError
+            raise ZeroDivisionError
         imt = round((weight / ((height / 100) ** 2)), 1)
         if imt < 16.5:
             print(f"Your index is: {imt}. It's huge underweight, so close to death")
@@ -28,3 +29,50 @@ def imt_count():
 
 
 imt_count()
+
+
+# 2 Task
+class Calculator:
+    def summ(self, a, b):
+        return a + b
+
+    def sub(self, a, b):
+        return a - b
+
+    def mult(self, a, b):
+        return a * b
+
+    def div(self, a, b):
+        if b == 0:
+            raise ZeroDivisionError
+        return a / b
+
+
+calc = Calculator()
+
+while True:
+    try:
+        operator = input('Choose an operation: \n 1. Add. \n 2. Subtract. \n 3. Multiply. \n 4. Divide. \n 5. Exit. \n')
+        a = float(input('Enter the first number: '))
+        b = float(input('Enter the second number: '))
+
+        if operator == '1':
+            result = calc.summ(a, b)
+        elif operator == '2':
+            result = calc.sub(a, b)
+        elif operator == '3':
+            result = calc.mult(a, b)
+        elif operator == '4':
+            result = calc.div(a, b)
+        elif operator == '5':
+            break
+        else:
+            raise ValueError
+
+        print('THe result is:', result)
+
+    except ValueError as ve:
+        print('Error:', ve, "Try to enter only numbers")
+
+    except ZeroDivisionError as zde:
+        print("Error:", zde, "You can't divide by zero")
